@@ -1,0 +1,31 @@
+CREATE OR REPLACE FUNCTION find_grade() RETURNS INTEGER AS $$
+DECLARE
+    total FLOAT;
+    my_cursor CURSOR FOR SELECT * FROM student;
+    my_record RECORD;
+    
+BEGIN                 
+    OPEN my_cursor;                                                   
+    LOOP                                                              
+        FETCH my_cursor INTO my_record;
+        EXIT WHEN NOT FOUND;                                          
+        total = CEIL(my_record.m1 + my_record.m2 + my_record.m3) / 3;
+
+        IF  total > 80 
+            THEN UPDATE student SET grade = 'a' WHERE CURRENT OF my_cursor;
+        ELSIF total > 70 and total <= 80 
+            THEN UPDATE student SET grade = 'b' WHERE CURRENT OF my_cursor;
+        ELSIF total > 60 and total <= 70 
+            THEN UPDATE student SET grade = 'c' WHERE CURRENT OF my_cursor;        
+        ELSIF total > 40 and total <= 60 
+            THEN UPDATE student SET grade = 'd' WHERE CURRENT OF my_cursor;
+        ELSE
+            UPDATE student SET grade = 'f' WHERE CURRENT OF my_cursor;        
+        END IF;
+
+    END LOOP;
+    CLOSE my_cursor;
+    RETURN 0;
+END
+$$ LANGUAGE PLPGSQL;
+

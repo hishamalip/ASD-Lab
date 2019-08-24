@@ -1,0 +1,23 @@
+CREATE OR REPLACE FUNCTION update_salary() RETURNS INTEGER AS $$
+DECLARE
+    my_cursor CURSOR FOR SELECT * FROM emp_list;
+    my_record RECORD;
+BEGIN
+    OPEN my_cursor;
+    LOOP
+        FETCH FROM my_cursor INTO my_record;
+        EXIT WHEN NOT FOUND;
+        IF my_record.m_sal*12 < 60000 THEN
+            UPDATE emp_list SET m_sal = m_sal*1.25  WHERE CURRENT OF my_cursor;
+        ELSIF my_record.m_sal*12 >= 60000 AND my_record.m_sal*12 < 200000 THEN
+            UPDATE emp_list SET m_sal = m_sal*1.20  WHERE CURRENT OF my_cursor;
+        ELSIF my_record.m_sal*12 >= 200000 AND my_record.m_sal*12 < 500000 THEN
+            UPDATE emp_list SET m_sal = m_sal*1.15  WHERE CURRENT OF my_cursor;
+        ELSIF my_record.m_sal*12 >= 500000 THEN 
+            UPDATE emp_list SET m_sal = m_sal*1.10  WHERE CURRENT OF my_cursor;
+        END IF;
+    END LOOP;
+    RETURN 0;
+END;
+$$ LANGUAGE PLPGSQL;
+

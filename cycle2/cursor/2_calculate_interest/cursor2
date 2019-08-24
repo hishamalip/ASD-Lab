@@ -1,0 +1,14 @@
+CREATE OR REPLACE FUNCTION calculate_interest() RETURNS VOID AS $$
+DECLARE
+    my_cursor CURSOR FOR SELECT * FROM bank_details;
+    my_record RECORD;
+BEGIN
+    OPEN my_cursor;
+    LOOP
+        FETCH my_cursor INTO my_record;
+        EXIT WHEN NOT FOUND;
+        INSERT INTO new_bank VALUES (my_record.accno, my_record.balance*0.08);
+    END LOOP;      
+    CLOSE my_cursor;
+END
+$$ LANGUAGE PLPGSQL;

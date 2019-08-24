@@ -1,0 +1,19 @@
+CREATE OR REPLACE FUNCTION calculate_experiance() RETURNS INTEGER AS $$
+DECLARE
+    my_cursor CURSOR FOR SELECT * FROM people_list;
+    my_record RECORD;
+    yd INT;
+BEGIN
+    OPEN my_cursor;
+    LOOP
+        FETCH FROM my_cursor INTO my_record;
+        EXIT WHEN NOT FOUND;
+        yd := date_part('year',age(my_record.dt_joining));
+        IF yd > 10 THEN
+            INSERT INTO experiance_list VALUES(my_record.id, my_record.name, yd);
+        END IF; 
+    END LOOP;
+    CLOSE my_cursor;
+    RETURN 0;
+END
+$$ LANGUAGE PLPGSQL;
