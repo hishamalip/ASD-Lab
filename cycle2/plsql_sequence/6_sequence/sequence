@@ -1,0 +1,11 @@
+CREATE OR REPLACE FUNCTION my_sequence() RETURNS VOID AS $$
+BEGIN
+  CREATE TABLE class_cse(roll INT NOT NULL PRIMARY KEY, name VARCHAR(20), phone INT);
+  CREATE SEQUENCE roll_no START 1;
+  INSERT INTO class_cse VALUES(nextval('roll_no'), 'ARUN', 0482239091),
+                              (nextval('roll_no'), 'AMAL', 0484234562),
+                              (nextval('roll_no'), 'PETER', 048511234),
+                              (nextval('roll_no'), 'JOSE', 048943617),
+                              (nextval('roll_no'), 'ANNIE', 048123145);
+END
+$$ LANGUAGE PLPGSQL;

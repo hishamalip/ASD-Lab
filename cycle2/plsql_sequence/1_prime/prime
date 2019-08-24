@@ -1,0 +1,31 @@
+CREATE OR REPLACE FUNCTION prime(n integer) RETURNS INTEGER AS $$
+DECLARE
+    i INTEGER;
+    j INTEGER;
+    flag INTEGER;
+    count INTEGER;
+BEGIN
+    IF n >= 1 THEN
+        RAISE NOTICE 'first % prime numbers are :', n;    
+    END IF;
+    count := 1;
+    i := 2;
+    WHILE count <= n LOOP
+        flag = 1;
+
+        FOR j IN 2..i-1 LOOP
+            IF mod(i, j) = 0 THEN
+                flag = 0;
+                EXIT;
+            END IF;
+        END LOOP;
+
+        IF flag = 1 THEN
+            RAISE NOTICE '%', i;
+            count := count + 1;
+        END IF;   
+        i := i + 1;
+    END LOOP;
+END;
+$$ LANGUAGE PLPGSQL;
+

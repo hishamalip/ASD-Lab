@@ -1,0 +1,21 @@
+CREATE OR REPLACE FUNCTION fibonacci(n INTEGER) RETURNS INTEGER AS $$
+DECLARE
+    first INTEGER := 0; 
+    second INTEGER := 1; 
+    temp INTEGER; 
+    k INTEGER := n; 
+    i INTEGER; 
+BEGIN
+    RAISE NOTICE 'FIRST % FIBONACCI SERIES IS', n; 
+    RAISE NOTICE '%', first;	
+    RAISE NOTICE '%', second;
+    
+    FOR i IN 2..k-1
+    LOOP 
+        temp := first + second; 
+        first := second; 
+        second := temp; 
+        RAISE NOTICE '%', temp; 
+    END LOOP; 
+END; 
+$$ LANGUAGE PLPGSQL;

@@ -1,0 +1,8 @@
+CREATE OR REPLACE FUNCTION calculate_grade() RETURNS VOID AS $$
+    UPDATE student_grade
+        SET grade = CASE
+                        WHEN (mark1 + mark2 + mark3) / 3 > 40 THEN 'Pass'
+                        ELSE 'Fail'
+                    end;
+$$ LANGUAGE SQL;
+

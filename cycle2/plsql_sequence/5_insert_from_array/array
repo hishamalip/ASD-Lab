@@ -1,0 +1,12 @@
+CREATE OR REPLACE FUNCTION array_input() RETURNS VOID AS $$
+    DECLARE
+        i INTEGER;
+        name_array TEXT[] := '{"ARUN", "AMAL", "PETER", "JOSE", "ANNIE", "MARY", "JOSEPH", "MARK", "MIDHUN", "KEVIN"}';   
+        mark_array INTEGER[] := '{25, 76, 43, 45, 67, 57, 97, 56, 89, 8}';
+
+    BEGIN
+        FOR i IN array_lower(name_array, 1) .. array_upper(name_array, 1) LOOP
+            INSERT INTO student(name, mark) VALUES (name_array[i], mark_array[i]);
+    END LOOP;
+    END
+$$ LANGUAGE PLPGSQL;

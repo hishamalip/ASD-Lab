@@ -1,0 +1,16 @@
+CREATE OR REPLACE FUNCTION area_calculation(step integer, lim integer) RETURNS VOID AS $$
+DECLARE
+    area INTEGER;
+    temp INTEGER := step;
+BEGIN
+    TRUNCATE TABLE circle_area;                         -- truncating the table 
+    LOOP
+        area := CEIL(3.14 * temp * temp);               -- area calculation
+        INSERT INTO circle_area VALUES(temp, area);     -- add corresponding values into table
+        temp := temp + step;                            -- increasing next radius with step
+        lim := lim - 1;                                 -- decrasing the limit
+        EXIT WHEN 0 >= lim;                             -- exit if limit reached
+    END LOOP;
+END
+$$ LANGUAGE PLPGSQL;
+
