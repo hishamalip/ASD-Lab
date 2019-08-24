@@ -1,0 +1,18 @@
+CREATE OR REPLACE FUNCTION change_customer_count() RETURNS TRIGGER AS $$
+BEGIN
+	IF TG_OP = 'DELETE' THEN
+		UPDATE customer_count SET count_row = count_row - 1;
+	ELSIF TG_OP = 'INSERT' THEN
+		UPDATE customer_count SET count_row = count_row + 1;
+	END IF;
+	RETURN NEW;
+END
+$$ LANGUAGE PLPGSQL;
+
+
+
+CREATE TRIGGER trigger3
+AFTER INSERT OR DELETE
+ON customer_details
+FOR EACH ROW                            
+EXECUTE PROCEDURE change_customer_count();

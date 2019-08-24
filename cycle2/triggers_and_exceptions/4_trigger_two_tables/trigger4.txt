@@ -1,0 +1,28 @@
+CREATE OR REPLACE FUNCTION update_and_delete() RETURNS TRIGGER AS $$
+BEGIN
+	IF TG_OP = 'UPDATE' THEN
+		INSERT INTO updated_employee
+		VALUES(new.emp_id, new.emp_name, new.salary);
+	ELSIF TG_OP = 'DELETE' THEN
+		INSERT INTO deleted_employee
+		VALUES(old.emp_id, old.emp_name, old.salary);
+	END IF;
+	RETURN OLD;	
+END
+$$ LANGUAGE PLPGSQL;
+
+
+
+CREATE TRIGGER trigger4 
+AFTER UPDATE OR DELETE
+ON employee_details
+EXECUTE PROCEDURE update_and_delete();
+
+
+
+
+
+
+
+
+

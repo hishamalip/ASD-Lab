@@ -1,0 +1,13 @@
+CREATE OR REPLACE FUNCTION no_data_check(my_id INT) RETURNS VOID AS $$
+DECLARE
+	student_name varchar(20); 
+BEGIN
+	SELECT name INTO STRICT student_name FROM students WHERE id = my_id;
+	RAISE NOTICE 'Name = %', student_name;    
+EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+		RAISE NOTICE 'No data exception occured';
+		RAISE NOTICE 'No name with id %', my_id;	
+END
+$$ LANGUAGE PLPGSQL;
+

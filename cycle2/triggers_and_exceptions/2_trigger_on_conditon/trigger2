@@ -1,0 +1,15 @@
+CREATE OR REPLACE FUNCTION salary_check() RETURNS TRIGGER AS $$
+    IF NEW.salary > 20000 THEN
+        RAISE NOTICE 'Employee has salary greater than 20000/-'
+    END IF;
+    RETURN NEW;
+END
+$$ LANGUAGE PLPGSQL; 
+
+
+
+CREATE TRIGGER trigger2 
+BEFORE INSERT 
+ON employee_details 
+FOR EACH ROW
+EXECUTE PROCEDURE salary_check();

@@ -1,0 +1,9 @@
+CREATE OR REPLACE FUNCTION division_exception(a FLOAT, b FLOAT) RETURNS FLOAT AS $$
+BEGIN	
+	RETURN a/b;
+EXCEPTION
+	WHEN DIVISION_BY_ZERO THEN
+		RAISE NOTICE 'Cant divide by zero. Enter another divisor';
+		RETURN null;
+END
+$$ LANGUAGE PLPGSQL;

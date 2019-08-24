@@ -1,0 +1,12 @@
+CREATE OR REPLACE FUNCTION add_ebill(name TEXT, prev INT, curr INT) RETURNS VOID AS $$
+BEGIN
+	IF prev = curr THEN
+		RAISE EXCEPTION USING ERRCODE = '50001';
+	END IF;
+    	INSERT INTO ebill VALUES (name, prev ,curr);
+	RAISE NOTICE 'Statement processed';
+	EXCEPTION
+		WHEN SQLSTATE '50001' THEN
+            		RAISE NOTICE 'Data Entry Error';
+END
+$$ LANGUAGE PLPGSQL;	
