@@ -1,0 +1,6 @@
+CREATE OR REPLACE PROCEDURE pr1() AS $$
+BEGIN
+    UPDATE student_details
+    SET marks = marks + (marks * 0.05);
+END
+$$ LANGUAGE plpgsql;

@@ -1,0 +1,90 @@
+pk1
+---
+CREATE OR REPLACE PROCEDURE pk1() AS $$
+BEGIN
+    CALL proc1(10, 5);
+    CALL proc2(25);
+    PERFORM fn1(12);
+    PERFORM fn2(2, 6, 1);
+    COMMIT;
+END
+$$ LANGUAGE plpgsql;
+-----------------------------------------------------------------------------------
+
+
+proc1
+-----
+CREATE OR REPLACE PROCEDURE proc1(num1 NUMERIC, num2 NUMERIC) AS $$
+DECLARE
+    sum NUMERIC;
+    avg FLOAT;
+    prod NUMERIC;
+BEGIN
+    sum := num1 + num2;
+    avg := (num1 + num2) / 2;
+    prod := num1 * num2;   
+    RAISE NOTICE ' ';
+    RAISE NOTICE 'Numbers are % and %', num1, num2;
+    RAISE NOTICE 'Sum : % ---- Average : % ---- Product : %', sum, avg, prod;
+    RAISE NOTICE ' ';
+END
+$$ LANGUAGE plpgsql;
+------------------------------------------------------------------------------------
+
+
+proc2
+-----
+CREATE OR REPLACE PROCEDURE proc2(num1 FLOAT) AS $$
+BEGIN
+    RAISE NOTICE 'Square root of % is %', num1, SQRT(num1);
+    RAISE NOTICE ' ';
+END
+$$ LANGUAGE plpgsql;
+
+------------------------------------------------------------------------------------
+
+
+fn1
+----
+CREATE OR REPLACE FUNCTION fn1(num1 INT) RETURNS VOID AS $$
+BEGIN
+    IF num1 % 2 = 0 THEN
+        RAISE NOTICE '% is even number', num1;
+    ELSE
+        RAISE NOTICE '% is odd number', num1;
+    END IF;
+    RAISE NOTICE ' ';
+END
+$$ LANGUAGE plpgsql;
+------------------------------------------------------------------------------------
+
+
+fn2
+----
+CREATE OR REPLACE FUNCTION fn2(num1 INT, num2 INT, num3 INT) RETURNS VOID AS $$
+BEGIN
+        RAISE NOTICE 'Sum of %, % and % is : %', num1, num2, num3, (num1+num2+num3);
+        RAISE NOTICE ' ';
+END
+$$ LANGUAGE plpgsql;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

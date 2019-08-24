@@ -1,0 +1,30 @@
+CREATE TABLE student(id INT, name VARCHAR(10), 
+                     m1 INT, m2 INT, m3 INT, 
+                     total INT, grade VARCHAR(1));
+-------------------------------------------------------------------------
+
+
+CREATE OR REPLACE PROCEDURE pro_update_total_and_grade(sid INT, sname TEXT, mark1 INT, mark2 INT, mark3 INT) AS $$
+BEGIN
+    INSERT INTO student VALUES(sid, sname, mark1, mark2, mark3);
+    COMMIT;
+    PERFORM func_calculate_total_and_grade(sid);
+END
+$$ LANGUAGE plpgsql;
+-------------------------------------------------------------------------
+
+
+CREATE OR REPLACE FUNCTION func_calculate_total_and_grade(stud_id INTEGER) RETURNS VOID AS $$
+BEGIN
+    UPDATE student
+    SET total = m1 + m2 + m3
+    WHERE id = stud_id;
+
+    UPDATE student
+    SET grade = CASE
+                    WHEN ((m1 + m2 + m3) / 3) > 40 THEN 'P'
+                    ELSE 'F'
+                END
+    WHERE id = stud_id;
+END
+$$ LANGUAGE plpgsql;
