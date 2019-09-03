@@ -1,20 +1,6 @@
-pk1
----
-CREATE OR REPLACE PROCEDURE pk1() AS $$
-BEGIN
-    CALL proc1(10, 5);
-    CALL proc2(25);
-    PERFORM fn1(12);
-    PERFORM fn2(2, 6, 1);
-    COMMIT;
-END
-$$ LANGUAGE plpgsql;
------------------------------------------------------------------------------------
-
-
-proc1
+proc1 - sum, avg, product
 -----
-CREATE OR REPLACE PROCEDURE proc1(num1 NUMERIC, num2 NUMERIC) AS $$
+CREATE OR REPLACE PROCEDURE pk1.proc1(num1 NUMERIC, num2 NUMERIC) AS $$
 DECLARE
     sum NUMERIC;
     avg FLOAT;
@@ -29,24 +15,23 @@ BEGIN
     RAISE NOTICE ' ';
 END
 $$ LANGUAGE plpgsql;
-------------------------------------------------------------------------------------
+_________________________________________________________________________
 
 
-proc2
+proc2 - sqrt
 -----
-CREATE OR REPLACE PROCEDURE proc2(num1 FLOAT) AS $$
+CREATE OR REPLACE PROCEDURE pk1.proc2(num1 FLOAT) AS $$
 BEGIN
     RAISE NOTICE 'Square root of % is %', num1, SQRT(num1);
     RAISE NOTICE ' ';
 END
 $$ LANGUAGE plpgsql;
+_________________________________________________________________________
 
-------------------------------------------------------------------------------------
 
-
-fn1
-----
-CREATE OR REPLACE FUNCTION fn1(num1 INT) RETURNS VOID AS $$
+fn1 - even or odd
+---
+CREATE OR REPLACE FUNCTION pk1.fn1(num1 INT) RETURNS VOID AS $$
 BEGIN
     IF num1 % 2 = 0 THEN
         RAISE NOTICE '% is even number', num1;
@@ -56,18 +41,30 @@ BEGIN
     RAISE NOTICE ' ';
 END
 $$ LANGUAGE plpgsql;
-------------------------------------------------------------------------------------
+_________________________________________________________________________
 
 
-fn2
-----
-CREATE OR REPLACE FUNCTION fn2(num1 INT, num2 INT, num3 INT) RETURNS VOID AS $$
+fn2 - sum of three
+---
+CREATE OR REPLACE FUNCTION pk1.fn2(num1 INT, num2 INT, num3 INT) RETURNS VOID AS $$
 BEGIN
         RAISE NOTICE 'Sum of %, % and % is : %', num1, num2, num3, (num1+num2+num3);
         RAISE NOTICE ' ';
 END
-$$ LANGUAGE plpgsql;
+_________________________________________________________________________
 
+
+pk1 - schema
+---
+CREATE OR REPLACE PROCEDURE pk1.ALL() AS $$
+BEGIN
+    CALL pk1.proc1(10, 5);
+    CALL pk1.proc2(25);
+    PERFORM pk1.fn1(12);
+    PERFORM pk1.fn2(2, 6, 1);
+    COMMIT;
+END
+$$ LANGUAGE plpgsql;
 
 
 
