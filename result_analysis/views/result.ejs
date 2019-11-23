@@ -1,13 +1,7 @@
+<% include partials/header.ejs %>
 
-
-<html>
-
-<head>
-    KTU Result Analysis
-</head>
-
-<body>
-        <br /><textarea rows="20" cols = "150" name = "result" readonly="true">
+<center>
+    <br /><textarea rows="20" cols="150" name="result" readonly="true">
             <%= ce_result %>
             <%= ee_result %>
             <%= me_result %>
@@ -16,7 +10,5 @@
             <%= cs_result %>
             <%= ae_result %>
         </textarea>
-
-</body>
-
-</html>
+</center>
+<% include partials/footer.ejs %>
