@@ -12,6 +12,7 @@ module.exports = {
         let message = '';
         let username = req.body.user_name;
         let password = req.body.pass_word;
+        
         let query = "INSERT INTO `login`(username, password) VALUES ('" + username + "', '" + password + "')";
         
         db.query(query, (err, result) => {
