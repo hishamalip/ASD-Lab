@@ -1,0 +1,15 @@
+<% include partials/header.ejs %>
+<center>
+<div class="form_settings">
+    <form  action="" method="post" enctype="multipart/form-data">
+        <input type="text"  name="user_name" id="user-name" placeholder="Enter your username" minlength="5" required> <br />
+        <input type="password"  name="pass_word" id="pass-word" placeholder="Type your password" required> <br />
+        <button type="submit"  float-right">Login</button>   
+    </form>
+</div>
+    <p>Don't have an account? <a href="/register">Register here!</a></p>
+</center>
+
+
+
+<% include partials/footer.ejs %>

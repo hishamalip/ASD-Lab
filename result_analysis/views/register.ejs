@@ -1,0 +1,25 @@
+<% include partials/header.ejs %>
+
+<% if (message != '') { %>
+<p><%= message %></p>
+<a href="/login"><input type="button" name="login" value="Login"></button></a>
+<% } %>
+
+<center>
+<div class="form_settings">
+    <form action="" method="post" enctype="multipart/form-data">
+
+        <input type="text" name="full_name" id="full-name" placeholder="Enter your full name" required> <br />
+
+        <input type="email" name="user_name" id="user-name" placeholder="example@abc.com" required> <br />
+
+        <input type="password" name="pass_word" id="pass-word" placeholder="Type your password" required> <br />
+
+        <button type="submit" float-right">Register</button>
+        </table>
+    </form>
+    <p>Already have an account? <a href="/login">Login here!</a></p>
+</div>
+</center>
+
+<% include partials/footer.ejs %>
