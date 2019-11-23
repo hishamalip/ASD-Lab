@@ -12,12 +12,13 @@ const {addTest, addTestPage} = require('./routes/test');
 
 
 const {addLogin, addLoginPage} = require('./routes/login');
-
 const {addRegister, addRegisterPage} = require('./routes/register');
 
 const {addProfile, addProfilePage} = require('./routes/profile');
 
 const {addResult, addResultPage} = require('./routes/result');
+
+const {addContact, addContactPage} = require('./routes/contactus');
 
 const port = 5000;
 
@@ -75,6 +76,9 @@ app.post('/profile', addProfile);
 
 app.get('/result', addResultPage);
 app.post('/result', addResult);
+
+app.get('/contactus', addContactPage);
+app.post('/contactus', addContact);
 
 
 // including css files
