@@ -268,6 +268,10 @@ ul#menu li a:hover
   padding: 4px; 
   font: 100% arial, sans-serif;}
 
+
+
+
+  /* FORM SETTINGS */
 .form_settings
 { margin: 30px 0 0 0;}
 
@@ -282,33 +286,64 @@ ul#menu li a:hover
 .form_settings input, .form_settings textarea
 { margin: 5px 0 5px 0;
   padding: 5px; 
-  width: 299px; 
+  width: 200px; 
   font: 100% arial; 
   border: 1px solid #E5E5DB; 
   background: #FFF; 
-  color: #47433F;}
-  
-.form_settings .submitlogin
-{ font: 100% arial; 
-  border: 0; 
-  width: 99px; 
-  /* margin: 0 0 0 212px; */
-  height: 33px;
-  padding: 2px 0 3px 0;
-  cursor: pointer; 
-  background:#4CAF50; /* Green */ 
-  color: #FFF;}
+  color: #47433F;
+  border: 2px solid rgb(189, 189, 189);
+  border-radius: 2px;
+}
 
-.form_settings .submitsignin
-{ font: 100% arial; 
-  border: 0; 
-  width: 99px; 
-  /* margin: 0 0 0 212px; */
-  height: 33px;
-  padding: 2px 0 3px 0;
-  cursor: pointer; 
-  background:#f44336; /* Red */  
-  color: #FFF;}
+.form_settings input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
+    /* border: 2px solid #458cff; */
+    border: 2px solid rgb(73, 73, 73);
+    border-radius: 2px;
+  }
+
+
+
+  .btn {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  
+  .btnblack{
+    background-color: white;
+    color: black;
+    border: 2px solid #3a3a3a;
+  }
+  
+  .btnblack:hover {
+    background-color: #3a3a3a;
+    color: white;
+  }
+  
+  .btngreen {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #4CAF50;
+  }
+  
+  .btngreen:hover {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+
+
+
+
 
 .form_settings textarea, .form_settings select
 { font: 100% arial; 
@@ -344,3 +379,5 @@ table tr td
 { background: #E5E5DB;
   color: #47433F;
   border-top: 1px solid #FFF;}
+
+
