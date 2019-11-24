@@ -27,7 +27,7 @@ module.exports = {
             // ec_result.forEach(result => { console.log(result) });
             // cs_result.forEach(result => { console.log(result) });
             // ae_result.forEach(result => { console.log(result) });
-            console.log(ce_result);
+            // console.log(ce_result);
             res.render('result.ejs', {
                 title: 'KTU Result Analysis | Test'
                 ,message: '',

@@ -1,9 +1,9 @@
 # importing tabula python library for extracting data from PDF
 import tabula 
 # storing data to 'df' variable
-df = tabula.read_pdf("/home/hishamalip/Desktop/result_analysis/views/s4.pdf", pages='all') 
+df = tabula.read_pdf("/home/hishamalip/github/asdlab/result_analysis/views/s4.pdf", pages='all') 
 # converting input pdf to csv format
-tabula.convert_into("/home/hishamalip/Desktop/result_analysis/views/s4.pdf", "s4.csv", output_format="csv", pages='all') 
+# tabula.convert_into("/home/hishamalip/Desktop/result_analysis/views/s4.pdf", "s4.csv", output_format="csv", pages='all') 
 # storing data to x in array format
 x = df.to_numpy() 
 # count_dept() : A function for returing the number of students appeared for exam
