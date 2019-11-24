@@ -10,15 +10,15 @@ module.exports = {
             // results is an array consisting of messages collected during execution
             //  results.forEach(result => {console.log( result);}) 
             let length = results.length;
-            let ce_result = results.slice(0, 5);
-            ce_result= ce_result.join('/n'); 
+            let ce_result = results.slice(0, 5).join('\n');;
+            // ce_result= ce_result(); 
             // ce_result1 = ce_result.forEach()
-            let ee_result = results.slice(6, 11);
-            let me_result = results.slice(12, 17);
-            let ie_result = results.slice(18, 23);
-            let ec_result = results.slice(24, 29);
-            let cs_result = results.slice(30, 35);
-            let ae_result = results.slice(36, 41);
+            let ee_result = results.slice(6, 11).join('\n');
+            let me_result = results.slice(12, 17).join('\n');;
+            let ie_result = results.slice(18, 23).join('\n');;
+            let ec_result = results.slice(24, 29).join('\n');;
+            let cs_result = results.slice(30, 35).join('\n');;
+            let ae_result = results.slice(36, 41).join('\n');;
           
             // ce_result.forEach(result => { console.log(result) });
             // me_result.forEach(result => { console.log(result) });
