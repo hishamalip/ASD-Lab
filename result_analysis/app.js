@@ -20,6 +20,8 @@ const {addResult, addResultPage} = require('./routes/result');
 
 const {addContact, addContactPage} = require('./routes/contactus');
 
+const {addSubject_result, addSubject_resultPage} = require('./routes/sub_result');
+
 const port = 5000;
 
 // create connection to database
@@ -80,6 +82,9 @@ app.post('/result', addResult);
 app.get('/contactus', addContactPage);
 app.post('/contactus', addContact);
 
+
+app.get('/sub_result', addSubject_resultPage);
+app.post('/sub_result', addSubject_result);
 
 // including css files
 app.use(express.static(__dirname + '/public'));
