@@ -22,6 +22,15 @@ const {addContact, addContactPage} = require('./routes/contactus');
 
 const {addSubject_result, addSubject_resultPage} = require('./routes/sub_result');
 
+
+const {addCivil_resultPage} = require('./routes/civil_result');
+const {addElectrical_resultPage} = require('./routes/electrical_result');
+const {addMechanical_resultPage} = require('./routes/mechanical_result');
+const {addIndustrial_resultPage} = require('./routes/industrial_result');
+const {addApplied_resultPage} = require('./routes/applied_result');
+const {addElectronics_resultPage} = require('./routes/electronics_result');
+const {addComputer_resultPage} = require('./routes/computer_result');
+
 const port = 5000;
 
 // create connection to database
@@ -85,6 +94,18 @@ app.post('/contactus', addContact);
 
 app.get('/sub_result', addSubject_resultPage);
 app.post('/sub_result', addSubject_result);
+
+
+
+app.get('/civil_result', addCivil_resultPage);
+app.get('/electrical_result', addElectrical_resultPage);
+app.get('/mechanical_result', addMechanical_resultPage);
+app.get('/industrial_result', addIndustrial_resultPage);
+app.get('/applied_result', addApplied_resultPage);
+app.get('/electronics_result', addElectronics_resultPage);
+app.get('/computer_result', addComputer_resultPage);
+
+// app.get('/electrical_result', addCivil_resultPage);
 
 // including css files
 app.use(express.static(__dirname + '/public'));
