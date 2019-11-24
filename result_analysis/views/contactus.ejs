@@ -1,22 +1,21 @@
 <% include partials/header.ejs %>
 
 <center>
-        <!-- insert the page content here -->
-        <h1>Contact Us</h1>
-        <p>We're here to help and answer any question you might have. We look forward to hearing from you.</p>
+  <!-- insert the page content here -->
+  <h1>Contact Us</h1>
+  <p>We're here to help and answer any question you might have. We look forward to hearing from you.</p>
 
-        <div class="form_settings">
-            <form action="" method="post" enctype="multipart/form-data">
-              <p><input class="contact" type="email" name="email" placeholder="Enter your email id" required/></p>
-              <p><textarea class="contact textarea" rows="8" cols="50" name="message"  placeholder="Describe yourself here..." required>
-
-              </textarea>
-
-              <p style="padding-top: 15px">
-            <input type="submit" class="submit" name="contact_submitted" value="Send" />
-              </p>
-            </form>      
-        </center>
+  <div class="form_settings">
+    <form action="" method="post" enctype="multipart/form-data">
+      <p><input class="contact" type="email" name="email" placeholder="Enter your email id" required /></p>
+      <textarea rows="10" cols="70" placeholder="Do you have any previous publishing experience? (100 words)"></textarea>
+    </br>
+      <input type="submit" class="btn btngreen" name="contact_submitted" value="Send" />
+    </form>
+    </div>
+</center>
 
 
-    <% include partials/footer.ejs %>
+
+
+<% include partials/footer.ejs %>
