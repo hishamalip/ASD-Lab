@@ -1,40 +1,46 @@
 <% include partials/header.ejs %>
 
 <center>
-<form action="" method="post" enctype="multipart/form-data">
+    <form action="" method="post" enctype="multipart/form-data">
 
-    Upload pdf : <input type="file" name="myFile" multiple> <br /> <br />
+        Upload pdf : <input type="file" name="myFile" multiple> <br /> <br />
 
-    <button type="submit" float-right">Upload</button> <br /> <br />
-    <br>
+        <button type="submit" float-right">Upload</button> <br /> <br />
+        <br>
 
-    <input type="button" value="Total Result" class="btn btnblack">
-    <table border="1px">
-        <tr>
-            <td colspan=2>Department</td>
-        </tr>
-        <tr>
-            <td> Civil </td>
-            <td> <a href="/result"> <input type="button" value="click here"> </a> </td>
-        </tr>
-        <tr>
-            <td> Electrical </td>
-            <td> <a href="/result"> <input type="button" value="click here"> </a> </td>
-        </tr>
-        <tr>
-            <td> Mechanical </td>
-            <td> <a href="/result"> <input type="button" value="click here"> </a> </td>
-        </tr>
-        <tr>
-            <td> Applied Electronics </td>
-            <td> <a href="/result"> <input type="button" value="click here"> </a> </td>
-        </tr>
-        <tr>
-            <td> Computer Engineering </td>
-            <td> <a href="/result"> <input type="button" value="click here"> </a> </td>
-        </tr>
-    </table>
-</form>
+        <!-- TOTAL RESULT -->
+        <a href="/result">
+            <input type="button" value="View Total Result" class="btn btnblack">
+        </a>
+
+
+        <!-- DEPARTMENT WISE RESULT -->
+        <table border="1px">
+            <tr>
+                <td colspan=2>Department</td>
+            </tr>
+            <tr>
+                <td> Civil </td>
+                <td> <a href="/sub_result"> <input type="button" value="click here"> </a> </td>
+            </tr>
+            <tr>
+                <td> Electrical </td>
+                <td> <a href="/sub_result"> <input type="button" value="click here"> </a> </td>
+            </tr>
+            <tr>
+                <td> Mechanical </td>
+                <td> <a href="/sub_result"> <input type="button" value="click here"> </a> </td>
+            </tr>
+            <tr>
+                <td> Applied Electronics </td>
+                <td> <a href="/sub_result"> <input type="button" value="click here"> </a> </td>
+            </tr>
+            <tr>
+                <td> Computer Engineering </td>
+                <td> <a href="/sub_result"> <input type="button" value="click here"> </a> </td>
+            </tr>
+        </table>
+    </form>
 </center>
 
 <% include partials/footer.ejs %>
