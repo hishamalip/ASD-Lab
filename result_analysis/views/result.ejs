@@ -1,14 +1,61 @@
+
+
 <% include partials/header.ejs %>
 
 <center>
-    <br /><textarea rows="20" cols="150" name="result" readonly="true">
-            <%= ce_result %>
-            <%= ee_result %>
-            <%= me_result %>
-            <%= ie_result %>
-            <%= ec_result %>
-            <%= cs_result %>
-            <%= ae_result %>
-        </textarea> 
+    <!-- <textarea rows="20" cols="150" name="result" readonly="true">
+        <%= ce_result + "\n" %>
+        <%= ee_result + "\n" %>
+        <%= me_result + "\n" %>
+        <%= ie_result + "\n" %>
+        <%= ae_result + "\n" %>
+        <%= ec_result + "\n" %>
+        <%= cs_result + "\n" %>
+    </textarea> -->
+
+
+
+
+    <table style="white-space:pre-wrap; word-wrap:break-word;">
+        <tr>
+            <th> Department Name </th>
+            <th> Result </th>
+        </tr>
+        <tr>
+            <td>CIVIL ENGINEERING</td>
+            <td><%= ce_result + "\n" %></td>
+        </tr>
+        <tr>
+            <td>ELECTRICAL AND ELECTRONICS ENGINEERING</td>
+            <td><%= ee_result + "\n" %></td>
+        </tr>
+        <tr>
+            <td>MECHANICAL ENGINEERING</td>
+            <td><%= me_result + "\n" %></td>
+        </tr>
+        <tr>
+            <td>INDUSTRIAL ENGINEERING</td>
+            <td><%= ie_result + "\n" %></td>
+        </tr>
+        <tr>
+            <td>APPLIED ELECTRONICS & INSTRUMENTATION ENGINEERING</td>
+            <td><%= ae_result + "\n" %></td>
+        </tr>
+        <tr>
+            <td>ELECTRONICS & COMMUNICATION ENGGINEERING</td>
+            <td><%= ec_result + "\n" %></td>
+        </tr>
+        <tr>
+            <td>COMPUTER SCIENCE & ENGINEERING</td>
+            <td><%= cs_result + "\n" %></td>
+        </tr>
+    </table>
+
+
+
+
+
+
+
 </center>
 <% include partials/footer.ejs %>
