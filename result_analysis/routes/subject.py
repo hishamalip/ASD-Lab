@@ -1,7 +1,20 @@
+import MySQLdb
+db = MySQLdb.connect("localhost","root","password","socka")
+cur = db.cursor()    
+    #Reading the Employee data      
+cur.execute("select pdf_name from pdf_table order by id desc limit 1")  
+  
+    #fetching the first row from the cursor object  
+result = cur.fetchone()  
+  
+    #printing the result
+q = str(result)
+
+file_name = q[2:-3]  
 # importing tabula python library for extracting data from PDF
 import tabula 
 # storing data to 'df' variable
-df = tabula.read_pdf("/home/hishamalip/github/asdlab/result_analysis/views/s4.pdf", pages='all') 
+df = tabula.read_pdf("/home/ak/Downloads/result_analysis/views/" + file_name, pages='all') 
 # converting input pdf to csv format
 #tabula.convert_into("s4.pdf", "subject.csv", output_format="csv", pages='all') 
 # storing data to x in array format
