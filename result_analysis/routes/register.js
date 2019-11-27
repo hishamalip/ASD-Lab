@@ -3,7 +3,7 @@ const fs = require('fs');
 module.exports = {
     addRegisterPage: (req, res) => {
         res.render('register.ejs', {
-            title: 'KTU Result Analysis | Register'
+            title: 'KTU Result Analysis'
             , message: ''
         });
     },
@@ -24,7 +24,7 @@ module.exports = {
                 message = 'This email id is already registered. Please login';
                 res.render('register.ejs', {
                     message,
-                    title: 'KTU Result Analysis | Login'
+                    title: 'KTU Result Analysis'
                 });
             } else {
                 // send the player's details to the database

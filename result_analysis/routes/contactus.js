@@ -3,7 +3,7 @@ const fs = require('fs');
 module.exports = {
     addContactPage: (req, res) => {
         res.render('contactus.ejs', {
-            title: 'KTU Result Analysis | Contactus'
+            title: 'KTU Result Analysis'
             ,message: ''
         });
     },
@@ -12,7 +12,7 @@ module.exports = {
         let email = req.body.email;
         let message = req.body.message;
 
-        let query = "INSERT INTO `feedback`(email, message) VALUES ('" + email + "',    '" + message + "')";
+        let query = "INSERT INTO `feedback`(email, message) VALUES ('" + email + "', '" + message + "')";
         
         db.query(query, (err, result) => {
             if (err) {

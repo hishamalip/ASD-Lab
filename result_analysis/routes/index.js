@@ -8,7 +8,7 @@ module.exports = {
                 res.redirect('/');
             }
             res.render('index.ejs', {
-                title: 'Welcome to Socka | View Players'
+                title: 'Welcome to KTU Result Analysis'
                 ,players: result
             });
         });
