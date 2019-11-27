@@ -1,13 +1,37 @@
+import MySQLdb
+db = MySQLdb.connect("localhost","root","password","socka")
+cur = db.cursor()    
+    #Reading the Employee data      
+cur.execute("select pdf_name from pdf_table order by id desc limit 1")  
+  
+    #fetching the first row from the cursor object  
+result = cur.fetchone()  
+  
+    #printing the result
+q = str(result)
+
+file_name = q[2:-3]  
 # importing tabula python library for extracting data from PDF
 import tabula 
 # storing data to 'df' variable
-df = tabula.read_pdf("/home/hishamalip/github/asdlab/result_analysis/views/s4.pdf", pages='all') 
+df = tabula.read_pdf("/home/ak/Downloads/result_analysis/views/" + file_name, pages='all') 
 # converting input pdf to csv format
-# tabula.convert_into("/home/hishamalip/Desktop/result_analysis/views/s4.pdf", "s4.csv", output_format="csv", pages='all') 
+# tabula.convert_into("/home/ak/Desktop/result_analysis/views/s4.pdf", "s4.csv", output_format="csv", pages='all') 
 # storing data to x in array format
 x = df.to_numpy() 
 # count_dept() : A function for returing the number of students appeared for exam
 # start_index : Starting index of each department 
+# count_dept() : A function for returing the number of students appeared for exam
+# start_index : Starting index of each department 
+
+def display(pass_count,fail_count,percentage):
+    total= pass_count + fail_count
+    print("STUDENT APPEARED FOR EXAM =" + str(total))
+    print("NUMBER OF STUDENTS PASSED =" + str(pass_count))
+    print("NUMBER OF STUDENTS FAILED =" + str(fail_count))
+    print("PASS PERCENTAGE =" + str(round(float(percentage),2)))
+
+
 def count_dept(start_index):
     count = 0
     flag2= 0
@@ -32,7 +56,6 @@ def percentage(start_index,count):
     f=0
     p=0
     d=0
-    total=0
     end_index= start_index + count
     for i in range(start_index, end_index):
         flag=0
@@ -54,6 +77,11 @@ def percentage(start_index,count):
 
     return d, f, p
 # Variables 
+total_students=0
+total_pass=0
+total_fail=0
+total_percentage=0
+
 percenatge_ce=0
 percenatge_cs=0
 percenatge_ec=0
@@ -94,49 +122,42 @@ for i in range(0,len(x)):
             if len(q) == 11 or len(q) ==10 :
                 # Finding starting index of civil engineering
                 if q[j] == 'C' and q[j+1 ] == 'E' and ce == 0:
-                    #print("Civil Engineering")
                     dept='Civil Engineering'
                     ce=1
                     start_ce=i
                     break
                  # Finding starting index of electrical engineering    
                 elif q[j] == 'E' and q[j+1] == 'E' and ee == 0:
-                    #print("ELECTRICAL Engineering")
                     dept='Elctrical Engineering'
                     ee=1
                     start_ee=i
                     break
                  # Finding starting index of computer engineering    
                 elif q[j] == 'C' and q[j+1] == 'S' and cs == 0:
-                    #print("COMPUTER  Engineering")
                     dept='Computer Engineering'
                     cs=1
                     start_cs=i
                     break
                  # Finding starting index of mechanical engineering
                 elif q[j] == 'M' and q[j+1] == 'E' and me == 0:
-                    #print("MECHANICAL Engineering")
                     dept='mechanical Engineering'
                     me=1
                     start_me=i
                     break
                  # Finding starting index of industrial engineering
                 elif q[j] == 'I' and q[j+1] == 'E' and ie == 0:
-                    #print("INDUSTRAIL Engineering")
                     dept='industrial Engineering'
                     ie=1
                     start_ie=i
                     break
                  # Finding starting index of applied engineering
                 elif q[j] == 'A' and q[j+1] == 'E' and ae==0:
-                    #print("APPLIED Engineering")
                     dept='Applied Engineering'
                     ae=1
                     start_ae=i
                     break
                  # Finding starting index of electronics engineering
                 elif q[j] == 'E' and q[j+1] == 'C'and ec == 0:
-                    #print("ELECTRONICS Engineering")
                     start_ec=i
                     dept='Electronics Engineering'
                     ec=1
@@ -155,58 +176,31 @@ for i in range(0,len(x)):
     percenatge_ec, fail_ec, pass_ec = percentage(start_ec,count_ec)
     percenatge_cs, fail_cs, pass_cs = percentage(start_cs,count_cs)
     percenatge_ae,fail_ae, pass_ae = percentage(start_ae,count_ae)
-#print(count_ce)
-#print(count_ee)
-#print(count_me)
-#print(count_ie)
-#print(count_ae)
-#print(count_ec)
-#print(count_cs)
-#print(start_ce)
-#print(start_ee)
-#print(start_me)
-#print(start_ie)
-#print(start_ae)
-#print(start_cs)
+    
+    total_students= count_ce + count_me + count_ee + count_ec + count_ie + count_cs + count_ae
+    total_pass= pass_ce + pass_me + pass_ee + pass_ie + pass_ec + pass_cs + pass_ae
+    total_fail=  fail_ce + fail_me + fail_ee + fail_ie + fail_ec + fail_cs + fail_ae
+    total_percentage= (percenatge_ce+ percenatge_me + percenatge_ee + percenatge_ie + percenatge_ec + percenatge_cs + percenatge_ae)/7
+
 print("CIVIL ENGINEERING ")
-print("STUDENT APPEARED FOR EXAM =" + str(count_ce))
-print("NUMBER OF STUDENTS PASSED =" + str(pass_ce))
-print("NUMBER OF STUDENTS FAILED =" + str(fail_ce))
-print("PASS PERCENTAGE =" + str(round(float(percenatge_ce),2)))
+display(pass_ce,fail_ce,percenatge_ce)
 print("                      ")
 print("ELECTRICAL ENGINEERING ")
-print("STUDENT APPEARED FOR EXAM =" + str(count_ee))
-print("NUMBER OF STUDENTS PASSED =" + str(pass_ee))
-print("NUMBER OF STUDENTS FAILED =" + str(fail_ee))
-print("PASS PERCENTAGE =" + str(round(float(percenatge_ee),2)))
+display(pass_ee,fail_ee,percenatge_ee)
 print("                      ")
 print("MECHANICAL ENGINEERING ")
-print("STUDENT APPEARED FOR EXAM =" + str(count_me))
-print("NUMBER OF STUDENTS PASSED =" + str(pass_me))
-print("NUMBER OF STUDENTS FAILED =" + str(fail_me))
-print("PASS PERCENTAGE =" + str(round(float(percenatge_me),2)))
+display(pass_me,fail_me,percenatge_me)
 print("                      ")
 print("INDUSTRIAL ENGINEERING ")
-print("STUDENT APPEARED FOR EXAM =" + str(count_ie))
-print("NUMBER OF STUDENTS PASSED =" + str(pass_ie))
-print("NUMBER OF STUDENTS FAILED =" + str(fail_ie))
-print("PASS PERCENTAGE =" + str(round(float(percenatge_ie),2)))
+display(pass_ie,fail_ie,percenatge_ie)
 print("                      ")
 print("APPLIED ELECTRONICS AND ENGINEERING ")
-print("STUDENT APPEARED FOR EXAM =" + str(count_ae))
-print("NUMBER OF STUDENTS PASSED =" + str(pass_ae))
-print("NUMBER OF STUDENTS FAILED =" + str(fail_ae))
-print("PASS PERCENTAGE =" + str(round(float(percenatge_ae),2)))
+display(pass_ae,fail_ae,percenatge_ae)
 print("                      ")
 print("ELECTRONICS ENGINEERING ")
-print("STUDENT APPEARED FOR EXAM =" + str(count_ec))
-print("NUMBER OF STUDENTS PASSED =" + str(pass_ec))
-print("NUMBER OF STUDENTS FAILED =" + str(fail_ec))
-print("PASS PERCENTAGE =" + str(round(float(percenatge_ec),2)))
+display(pass_ec,fail_ec,percenatge_ec)
 print("                      ")
 print("COMPUTER SCIENCE AND ENGINEERING ")
-print("STUDENT APPEARED FOR EXAM =" + str(count_cs))
-print("NUMBER OF STUDENTS PASSED =" + str(pass_cs))
-print("NUMBER OF STUDENTS FAILED =" + str(fail_cs))
-print("PASS PERCENTAGE =" + str(round(float(percenatge_cs),2)))
-
+display(pass_cs,fail_cs,percenatge_cs)
+print("TOTAL RSULT OF THE COLLEGE")
+display(total_pass,total_fail,total_percentage)
