@@ -13,13 +13,30 @@ module.exports = {
         let username = req.body.user_name;
         let password = req.body.pass_word;
         
-        let query = "INSERT INTO `login`(username, password) VALUES ('" + username + "', '" + password + "')";
+        let query = "SELECT username, password, type FROM `register` WHERE username = '" + username + "' and password = '" + password + "'";
         
         db.query(query, (err, result) => {
             if (err) {
                 return res.status(500).send(err);
             }
-            res.redirect('/profile');
+            console.log(result);
+            if (result.length == 0) {
+                message = 'invalid username or password';
+                res.render('login.ejs', {
+                    message,
+                    title: 'KTU Result Analysis'
+                });
+            }
+            else if(result[0].type == 'user'){
+                res.redirect('/profile');
+                }
+            else{
+                res.redirect('/feedback');
+                   
+                
+            }
+
+
         });
     }
 };
