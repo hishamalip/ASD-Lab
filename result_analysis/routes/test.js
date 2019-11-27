@@ -3,7 +3,7 @@ const fs = require('fs');
 module.exports = {
     addTestPage: (req, res) => {
         res.render('test.ejs', {
-            title: 'Welcome to Socka | Test'
+            title: 'Welcome to KTU Result Analysis'
             ,message: ''
         });
     },
