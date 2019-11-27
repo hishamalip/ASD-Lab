@@ -26,7 +26,7 @@ module.exports = {
             // ae_subject.forEach(result => {console.log(result)});
 
             res.render('sub_result.ejs', {
-                title: 'KTU Result Analysis | Login'
+                title: 'KTU Result Analysis'
                 , message: '',
                 ce_subject : ce_subject,
                 me_subject : me_subject,
