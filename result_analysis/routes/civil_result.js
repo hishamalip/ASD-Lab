@@ -13,7 +13,7 @@ module.exports = {
 
 
             res.render('civil_result.ejs', {
-                title: 'KTU Result Analysis | Login'
+                title: 'KTU Result Analysis '
                 , message: '',
                 ce_subject : ce_subject,
             });

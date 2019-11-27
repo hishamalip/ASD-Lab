@@ -12,7 +12,7 @@ module.exports = {
             let me_subject = results.slice(51, 94).join('\n');
 
             res.render('mechanical_result.ejs', {
-                title: 'KTU Result Analysis | Login'
+                title: 'KTU Result Analysis'
                 , message: '',
                 me_subject : me_subject,
             });
